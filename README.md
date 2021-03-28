@@ -5,3 +5,4 @@ It makes use of the turtle graphics module mostly but I implemented some other c
 (now it's high time I specify that the music only works on Windows, if you use Unix or something else the sounds won't work but hopefully 
 everything else works) and some simple algorithms that rely on the following modules: time, random, math.
 Have a go at completing the game! (or maybe add a few levels of your own and challange me to them haha :) )
+I should also add that this is the most documented piece of code I've ever written (the professor wanted it that way :/)
