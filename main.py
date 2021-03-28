@@ -77,50 +77,50 @@ wn.setup(700, 700)  # setting the height and width in pixels
 wn.tracer(0)  # turning off drawing animations
 
 # registering all of the textures for the in-game elements
-turtle.register_shape("player_right.gif")
-turtle.register_shape("player_left.gif")
-turtle.register_shape("wall.gif")
-turtle.register_shape("treasure.gif")
-turtle.register_shape("treasure_small.gif")
-turtle.register_shape("treasure_big.gif")
-turtle.register_shape("enemy_left.gif")
-turtle.register_shape("enemy_right.gif")
-turtle.register_shape("heart.gif")
-turtle.register_shape("key.gif")
-turtle.register_shape("friend.gif")
-turtle.register_shape("door.gif")
-turtle.register_shape("arrow.gif")
-turtle.register_shape("stairs.gif")
-turtle.register_shape("black_square.gif")
-turtle.register_shape("dungeon_1.gif")
-turtle.register_shape("dungeon_2.gif")
-turtle.register_shape("dungeon_3.gif")
-turtle.register_shape("exit.gif")
-turtle.register_shape("black_background.gif")
-turtle.register_shape("winner.gif")
-turtle.register_shape("loser.gif")
-turtle.register_shape("one.gif")
-turtle.register_shape("two.gif")
-turtle.register_shape("three.gif")
-turtle.register_shape("four.gif")
-turtle.register_shape("five.gif")
+turtle.register_shape(r"Resources\player_right.gif")
+turtle.register_shape(r"Resources\player_left.gif")
+turtle.register_shape(r"Resources\wall.gif")
+turtle.register_shape(r"Resources\treasure.gif")
+turtle.register_shape(r"Resources\treasure_small.gif")
+turtle.register_shape(r"Resources\treasure_big.gif")
+turtle.register_shape(r"Resources\enemy_left.gif")
+turtle.register_shape(r"Resources\enemy_right.gif")
+turtle.register_shape(r"Resources\heart.gif")
+turtle.register_shape(r"Resources\key.gif")
+turtle.register_shape(r"Resources\friend.gif")
+turtle.register_shape(r"Resources\door.gif")
+turtle.register_shape(r"Resources\arrow.gif")
+turtle.register_shape(r"Resources\stairs.gif")
+turtle.register_shape(r"Resources\black_square.gif")
+turtle.register_shape(r"Resources\dungeon_1.gif")
+turtle.register_shape(r"Resources\dungeon_2.gif")
+turtle.register_shape(r"Resources\dungeon_3.gif")
+turtle.register_shape(r"Resources\exit.gif")
+turtle.register_shape(r"Resources\black_background.gif")
+turtle.register_shape(r"Resources\winner.gif")
+turtle.register_shape(r"Resources\loser.gif")
+turtle.register_shape(r"Resources\one.gif")
+turtle.register_shape(r"Resources\two.gif")
+turtle.register_shape(r"Resources\three.gif")
+turtle.register_shape(r"Resources\four.gif")
+turtle.register_shape(r"Resources\five.gif")
 
 if system == 'Windows':  # checking to see if the system we run on is a windows system
     # creating a separate thread to play the background music (if we don't do this, the game can't continue
     # until the music is over)
     # daemon=True means that the thread will be forcefully stopped once the main program has finished
-    thread = Thread(target=play_sound, args=("theme.mp3",), daemon=True)
+    thread = Thread(target=play_sound, args=(r"Resources\theme.mp3",), daemon=True)
     thread.start()  # starting the thread
 
 # creating the illusion of a loading screen by iterating through three pictures four times
 for i in range(4):
-    wn.bgpic("dungeon_1.gif")  # setting the background
+    wn.bgpic(r"Resources\dungeon_1.gif")  # setting the background
     wn.update()  # updating the screen
     time.sleep(0.5)  # waiting 0.5 seconds
-    wn.bgpic("dungeon_2.gif")  # setting the background
+    wn.bgpic(r"Resources\dungeon_2.gif")  # setting the background
     wn.update()  # updating the screen
     time.sleep(0.5)  # waiting 0.5 seconds
-    wn.bgpic("dungeon_3.gif")  # setting the background
+    wn.bgpic(r"Resources\dungeon_3.gif")  # setting the background
     wn.update()  # updating the screen
     time.sleep(0.5)  # waiting 0.5 seconds
 
@@ -128,7 +128,7 @@ for i in range(4):
 class Player(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("player_right.gif")  # giving the player texture
+        self.shape(r"Resources\player_right.gif")  # giving the player texture
         self.penup()  # not leaving traces on the screen when we move the player around
         self.speed(0)  # setting the animation speed to the fastest value
         self.gold = 0  # variable that stores the current score of the player
@@ -174,7 +174,7 @@ class Player(turtle.Turtle):
         """
         move_to_x = self.xcor() - 24
         move_to_y = self.ycor()
-        self.shape("player_left.gif")  # changing the texture in order to have the player face left
+        self.shape(r"Resources\player_left.gif")  # changing the texture in order to have the player face left
 
         # testing to see if the neighbour is a wall, a friend or an unopened door
         if (move_to_x, move_to_y) not in walls and (move_to_x, move_to_y) not in doors_locations \
@@ -190,7 +190,7 @@ class Player(turtle.Turtle):
         """
         move_to_x = self.xcor() + 24
         move_to_y = self.ycor()
-        self.shape("player_right.gif")  # changing the texture in order to have the player face right
+        self.shape(r"Resources\player_right.gif")  # changing the texture in order to have the player face right
 
         # testing to see if the neighbour is a wall, a friend or an unopened door
         if (move_to_x, move_to_y) not in walls and (move_to_x, move_to_y) not in doors_locations \
@@ -217,7 +217,7 @@ class Player(turtle.Turtle):
 class Enemy(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("enemy_left.gif")  # giving the enemy texture
+        self.shape(r"Resources\enemy_left.gif")  # giving the enemy texture
         self.penup()  # not leaving traces on the screen when the enemy moves around
         self.speed(0)  # setting the animation speed to the fastest value
         self.goto(x, y)  # sending the enemy to its start location
@@ -240,11 +240,11 @@ class Enemy(turtle.Turtle):
         elif self.direction == "left":
             dx = -24
             dy = 0
-            self.shape("enemy_left.gif")  # changing the texture in order to have the enemy face left
+            self.shape(r"Resources\enemy_left.gif")  # changing the texture in order to have the enemy face left
         elif self.direction == "right":
             dx = 24
             dy = 0
-            self.shape("enemy_right.gif")  # changing the texture in order to have the enemy face left
+            self.shape(r"Resources\enemy_right.gif")  # changing the texture in order to have the enemy face left
         else:
             dx = 0
             dy = 0
@@ -303,7 +303,7 @@ class Enemy(turtle.Turtle):
 class Friend(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("friend.gif")  # giving the friend texture
+        self.shape(r"Resources\friend.gif")  # giving the friend texture
         self.penup()  # not leaving traces on the screen when we move the friend
         self.speed(0)  # setting the animation speed to the fastest value
         self.key = True  # variable that stores whether or not the friend has a key
@@ -314,7 +314,7 @@ class Friend(turtle.Turtle):
 class Pen(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("wall.gif")  # giving the wall texture
+        self.shape(r"Resources\wall.gif")  # giving the wall texture
         self.penup()  # not leaving traces on the screen when we draw the wall
         self.speed(0)  # setting the animation speed to the fastest value
 
@@ -322,7 +322,7 @@ class Pen(turtle.Turtle):
 class BlackSquare(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("black_square.gif")  # giving the square texture
+        self.shape(r"Resources\black_square.gif")  # giving the square texture
         self.penup()  # not leaving traces on the screen when we draw the square
         self.speed(0)  # setting the animation speed to the fastest value
 
@@ -330,7 +330,7 @@ class BlackSquare(turtle.Turtle):
 class Health(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("heart.gif")  # giving the heart texture
+        self.shape(r"Resources\heart.gif")  # giving the heart texture
         self.penup()  # not leaving traces on the screen when we draw the heart
         self.speed(0)  # setting the animation speed to the fastest value
         self.goto(x, y)  # sending the heart to its location
@@ -349,7 +349,7 @@ class Health(turtle.Turtle):
 class Treasure(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("treasure.gif")  # giving the treasure texture
+        self.shape(r"Resources\treasure.gif")  # giving the treasure texture
         self.penup()  # not leaving traces on the screen when we draw the treasure
         self.speed(0)  # setting the animation speed to the fastest value
         self.gold = 100  # storing the value of this kind of treasure
@@ -369,7 +369,7 @@ class Treasure(turtle.Turtle):
 class TreasureSmall(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("treasure_small.gif")  # giving the treasure texture
+        self.shape(r"Resources\treasure_small.gif")  # giving the treasure texture
         self.penup()  # not leaving traces on the screen when we draw the treasure
         self.speed(0)  # setting the animation speed to the fastest value
         self.gold = 25  # storing the value of this kind of treasure
@@ -389,7 +389,7 @@ class TreasureSmall(turtle.Turtle):
 class TreasureBig(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("treasure_big.gif")  # giving the treasure texture
+        self.shape(r"Resources\treasure_big.gif")  # giving the treasure texture
         self.penup()  # not leaving traces on the screen when we draw the treasure
         self.speed(0)  # setting the animation speed to the fastest value
         self.gold = 250  # storing the value of this kind of treasure
@@ -409,7 +409,7 @@ class TreasureBig(turtle.Turtle):
 class Key(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("key.gif")  # giving the key texture
+        self.shape(r"Resources\key.gif")  # giving the key texture
         self.penup()  # not leaving traces on the screen when we draw the key
         self.speed(0)  # setting the animation speed to the fastest value
 
@@ -417,7 +417,7 @@ class Key(turtle.Turtle):
 class Arrow(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("arrow.gif")  # giving the arrow texture
+        self.shape(r"Resources\arrow.gif")  # giving the arrow texture
         self.penup()  # not leaving traces on the screen when we draw the arrow
         self.speed(0)  # setting the animation speed to the fastest value
 
@@ -425,7 +425,7 @@ class Arrow(turtle.Turtle):
 class ArrowNumber(turtle.Turtle):
     def __init__(self):
         turtle.Turtle.__init__(self)
-        self.shape("one.gif")  # giving the arrow number texture
+        self.shape(r"Resources\one.gif")  # giving the arrow number texture
         self.penup()  # not leaving traces on the screen when we draw the arrow number
         self.speed(0)  # setting the animation speed to the fastest value
 
@@ -456,7 +456,7 @@ class Score(turtle.Turtle):
 class Door(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("door.gif")  # giving the door texture
+        self.shape(r"Resources\door.gif")  # giving the door texture
         self.penup()  # not leaving traces on the screen when we draw the door
         self.speed(0)  # setting the animation speed to the fastest value
         self.goto(x, y)  # sending the door to its location
@@ -475,7 +475,7 @@ class Door(turtle.Turtle):
 class Stairs(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("stairs.gif")  # giving the stairs texture
+        self.shape(r"Resources\stairs.gif")  # giving the stairs texture
         self.penup()  # not leaving traces on the screen when we draw the stairs
         self.speed(0)  # setting the animation speed to the fastest value
         self.goto(x, y)  # sending the stairs to their location
@@ -493,7 +493,7 @@ class GameOver(turtle.Turtle):
 class GameWin(turtle.Turtle):
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
-        self.shape("exit.gif")  # giving the exit texture
+        self.shape(r"Resources\exit.gif")  # giving the exit texture
         self.penup()  # not leaving traces on the screen when we draw the exit
         self.speed(0)  # setting the animation speed to the fastest value
         self.goto(x, y)  # sending the exit to its location
@@ -607,7 +607,7 @@ levels.append(level_1)
 levels.append(level_2)
 levels.append(level_3)
 
-wn.bgpic("black_background.gif")  # setting up the background image
+wn.bgpic(r"Resources\black_background.gif")  # setting up the background image
 
 setup_maze(levels[1])  # loading in the first level
 
@@ -645,22 +645,22 @@ while True:
         arrow_number.hideturtle()
 
     if player.arrow == 1:  # updating the number of arrows on screen
-        arrow_number.shape("one.gif")
+        arrow_number.shape(r"Resources\one.gif")
     elif player.arrow == 2:
-        arrow_number.shape("two.gif")
+        arrow_number.shape(r"Resources\two.gif")
     elif player.arrow == 3:
-        arrow_number.shape("three.gif")
+        arrow_number.shape(r"Resources\three.gif")
     elif player.arrow == 4:
-        arrow_number.shape("four.gif")
+        arrow_number.shape(r"Resources\four.gif")
     elif player.arrow == 5:
-        arrow_number.shape("five.gif")
+        arrow_number.shape(r"Resources\five.gif")
     else:
         arrow_number.hideturtle()
 
     if player.is_collision(stairs):  # condition to go to the next level
         # playing the level up sound
         if system == 'Windows':
-            Thread(target=play_sound, args=("next_level.mp3",)).start()
+            Thread(target=play_sound, args=(r"Resources\next_level.mp3",)).start()
         # resetting every asset ##############
         wn.clear()
         wn.bgcolor("black")
@@ -712,11 +712,11 @@ while True:
         player.goto(2000, 2000)  # unloading the player from the map
         # playing the winning sound
         if system == 'Windows':
-            Thread(target=play_sound, args=("game_win.mp3",)).start()
+            Thread(target=play_sound, args=(r"Resources\game_win.mp3",)).start()
         wn.update()
         time.sleep(1)
         wn.clear()  # unloading every asset
-        wn.bgpic("winner.gif")  # setting the winning background picture
+        wn.bgpic(r"Resources\winner.gif")  # setting the winning background picture
         # making sure the quit and restart buttons still work
         turtle.listen()
         turtle.onkeypress(restart, "r")
@@ -728,7 +728,7 @@ while True:
         if player.is_collision(door) and player.key is True:
             # playing the door sound
             if system == 'Windows':
-                Thread(target=play_sound, args=("door.mp3",)).start()
+                Thread(target=play_sound, args=(r"Resources\door.mp3",)).start()
             x_coord = door.xcor()
             y_coord = door.ycor()
             # getting rid of the door
@@ -742,7 +742,7 @@ while True:
         if player.is_collision(treasure):
             # playing the treasure sound
             if system == 'Windows':
-                Thread(target=play_sound, args=("treasure.mp3",)).start()
+                Thread(target=play_sound, args=(r"Resources\treasure.mp3",)).start()
             # covering up the old score via writing over it with black
             # I know it's a horrible way to do things but I couldn't think of anything else
             Gold(current_gold, gold_text_x, gold_text_y, "black")
@@ -759,7 +759,7 @@ while True:
     for treasure in treasures_big:
         if player.is_collision(treasure):
             if system == 'Windows':
-                Thread(target=play_sound, args=("treasure.mp3",)).start()
+                Thread(target=play_sound, args=(r"Resources\treasure.mp3",)).start()
             Gold(current_gold, gold_text_x, gold_text_y, "black")
             player.gold += treasure.gold
             current_gold += treasure.gold
@@ -771,7 +771,7 @@ while True:
     for treasure in treasures_small:
         if player.is_collision(treasure):
             if system == 'Windows':
-                Thread(target=play_sound, args=("treasure.mp3",)).start()
+                Thread(target=play_sound, args=(r"Resources\treasure.mp3",)).start()
             Gold(current_gold, gold_text_x, gold_text_y, "black")
             player.gold += treasure.gold
             current_gold += treasure.gold
@@ -784,7 +784,7 @@ while True:
         if player.is_collision(friend):
             # playing the friend sound
             if system == 'Windows':
-                Thread(target=play_sound, args=("friend.mp3",)).start()
+                Thread(target=play_sound, args=(r"Resources\friend.mp3",)).start()
             x_coord = friend.xcor()
             y_coord = friend.ycor()
             # getting a key and an arrow from the friend
@@ -803,7 +803,7 @@ while True:
             if player.arrow:
                 # playing the enemy death sound
                 if system == 'Windows':
-                    Thread(target=play_sound, args=("enemy.mp3",)).start()
+                    Thread(target=play_sound, args=(r"Resources\enemy.mp3",)).start()
                 enemy.destroy()
                 enemies.remove(enemy)
                 player.arrow -= 1  # decrementing the arrows number
@@ -813,7 +813,7 @@ while True:
                 if heart.xcor() == max(hearts_x_cor):
                     # playing the player damage sound
                     if system == 'Windows':
-                        Thread(target=play_sound, args=("damage.mp3",)).start()
+                        Thread(target=play_sound, args=(r"Resources\damage.mp3",)).start()
                     # removing a life from the player
                     # again it's a very bad way to do it but I couldn't come up with anything else
                     black_square = BlackSquare()
@@ -828,10 +828,10 @@ while True:
             if not len(hearts):
                 # playing the game over sound
                 if system == 'Windows':
-                    Thread(target=play_sound, args=("game_lose.mp3",)).start()
+                    Thread(target=play_sound, args=(r"Resources\game_lose.mp3",)).start()
                 player.goto(2000, 2000)
                 wn.clear()  # unloading every asset
-                wn.bgpic("loser.gif")  # setting up the game over background
+                wn.bgpic(r"Resources\loser.gif")  # setting up the game over background
                 wn.title("Sandi's Maze")
                 wn.setup(700, 700)
                 # making sure the keys still work
